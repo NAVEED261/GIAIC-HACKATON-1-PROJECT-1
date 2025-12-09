@@ -227,9 +227,9 @@ source /opt/ros/humble/setup.bash
 ✅ Isaac Sim installed!
 
 **Module 3 (Weeks 8-10):**
-- [Week 8: Isaac Sim Setup](/docs/module-3-isaac/week-8-setup)
-- [Week 9: Perception Pipeline](/docs/module-3-isaac/week-9-perception)
-- [Week 10: Advanced Perception](/docs/module-3-isaac/week-10-advanced)
+- Week 8: Isaac Sim Setup (coming soon)
+- Week 9: Perception Pipeline (coming soon)
+- Week 10: Advanced Perception (coming soon)
 
 ## Additional Resources
 

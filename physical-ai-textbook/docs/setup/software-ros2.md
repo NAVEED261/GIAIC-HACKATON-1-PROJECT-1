@@ -396,7 +396,7 @@ source ~/.bashrc
 **Continue to:**
 1. **[Module 1: ROS 2 Fundamentals](/docs/module-1-ros2)** - Learn nodes, topics, services, actions
 2. **[Software: Isaac Sim Setup](/docs/setup/software-isaac-sim)** - For Module 3 (Weeks 8-10)
-3. **[Gazebo Installation](/docs/setup/software-gazebo)** - For Module 2 (Digital Twin Simulation)
+3. **Gazebo Installation** (coming soon) - For Module 2 (Digital Twin Simulation)
 
 ## Additional Resources
 
