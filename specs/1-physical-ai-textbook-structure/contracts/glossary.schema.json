@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Glossary Schema",
+  "description": "Validates glossary.json data file for Physical AI textbook",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["term", "definition", "relatedChapters"],
+    "properties": {
+      "term": {
+        "type": "string",
+        "description": "Primary glossary term",
+        "minLength": 2,
+        "maxLength": 100
+      },
+      "aliases": {
+        "type": "array",
+        "description": "Alternative names for this term",
+        "items": {
+          "type": "string"
+        }
+      },
+      "definition": {
+        "type": "string",
+        "description": "Concise definition of the term",
+        "minLength": 20,
+        "maxLength": 500
+      },
+      "relatedChapters": {
+        "type": "array",
+        "description": "Chapter IDs where this term is used",
+        "items": {
+          "type": "string",
+          "pattern": "^[a-z0-9-/]+$"
+        }
+      },
+      "externalLinks": {
+        "type": "array",
+        "description": "Additional external resources",
+        "items": {
+          "type": "object",
+          "required": ["label", "url"],
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 3
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    }
+  },
+  "minItems": 100,
+  "uniqueItems": true
+}
