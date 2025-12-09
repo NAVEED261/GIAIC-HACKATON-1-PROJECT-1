@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chapter Frontmatter Schema",
+  "description": "Validates frontmatter metadata for Physical AI textbook chapters",
+  "type": "object",
+  "required": [
+    "title",
+    "description",
+    "sidebar_label",
+    "sidebar_position",
+    "estimated_time",
+    "week",
+    "module",
+    "prerequisites",
+    "learning_objectives"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Chapter title displayed on page and in SEO",
+      "minLength": 5,
+      "maxLength": 100
+    },
+    "description": {
+      "type": "string",
+      "description": "SEO description and page summary",
+      "minLength": 20,
+      "maxLength": 160
+    },
+    "sidebar_label": {
+      "type": "string",
+      "description": "Short label for sidebar navigation",
+      "minLength": 2,
+      "maxLength": 30
+    },
+    "sidebar_position": {
+      "type": "integer",
+      "description": "Order within parent category (1-based)",
+      "minimum": 1
+    },
+    "slug": {
+      "type": "string",
+      "description": "Custom URL slug (optional)",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorization tags (optional)",
+      "items": {
+        "type": "string"
+      }
+    },
+    "estimated_time": {
+      "type": "number",
+      "description": "Estimated hours to complete this chapter",
+      "minimum": 0.5,
+      "maximum": 20
+    },
+    "week": {
+      "type": "integer",
+      "description": "Course week (1-13)",
+      "minimum": 1,
+      "maximum": 13
+    },
+    "module": {
+      "type": "integer",
+      "description": "Module number (1-4)",
+      "minimum": 1,
+      "maximum": 4
+    },
+    "prerequisites": {
+      "type": "array",
+      "description": "Array of prerequisite chapter IDs",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-/]+$"
+      }
+    },
+    "learning_objectives": {
+      "type": "array",
+      "description": "Measurable learning objectives (3-5 recommended)",
+      "items": {
+        "type": "string",
+        "minLength": 10
+      },
+      "minItems": 1,
+      "maxItems": 10
+    },
+    "assessment_type": {
+      "type": "string",
+      "description": "Assessment this chapter contributes to (optional)",
+      "enum": ["ros2-package", "gazebo-simulation", "isaac-perception", "capstone"]
+    },
+    "difficulty_level": {
+      "type": "string",
+      "description": "Difficulty level (optional)",
+      "enum": ["beginner", "intermediate", "advanced"]
+    },
+    "capstone_component": {
+      "type": "string",
+      "description": "Capstone component this chapter supports (optional)",
+      "enum": ["voice", "plan", "navigate", "perceive", "manipulate"]
+    },
+    "draft": {
+      "type": "boolean",
+      "description": "If true, excluded from production build",
+      "default": false
+    },
+    "last_updated": {
+      "type": "string",
+      "description": "Last update date (ISO 8601 format)",
+      "format": "date"
+    },
+    "author": {
+      "type": "string",
+      "description": "Chapter author name"
+    }
+  },
+  "additionalProperties": true
+}
