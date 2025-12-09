@@ -149,15 +149,15 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T012 [P] [US1] Create ModuleCard component in src/components/ModuleCard.tsx with props interface (moduleNumber, title, weekRange, learningOutcomes, estimatedHours, link, color)
-- [ ] T013 [P] [US1] Create QuickLinksPanel component in src/components/QuickLinksPanel.tsx with props interface (links array with label, url, icon)
-- [ ] T014 [P] [US1] Create custom homepage in src/pages/index.tsx with dashboard layout (hero section + 4 module cards in 2x2 grid + quick links sidebar)
-- [ ] T015 [P] [US1] Create module index files: docs/module-1-ros2/index.md, docs/module-2-digital-twin/index.md, docs/module-3-isaac/index.md, docs/module-4-vla/index.md with frontmatter (title, description, sidebar_position)
-- [ ] T016 [P] [US1] Create week-based subdirectories under each module: module-1-ros2/week-3-basics/, week-4-communication/, week-5-integration/ (similarly for modules 2-4)
-- [ ] T017 [US1] Update sidebars.ts to add nested week categories under each module with collapsed: true for modules
-- [ ] T018 [US1] Create docs/intro/index.md with course overview, structure diagram, and learning outcomes (frontmatter: week: 1, module: 0, estimated_time: 2)
-- [ ] T019 [US1] Create placeholder chapter files with frontmatter for Week 3-5 in module-1-ros2/ (ros2-fundamentals.md, nodes-topics.md, services.md, actions.md, multi-node-systems.md)
-- [ ] T020 [US1] Update homepage quick links to reference Hardware Setup (/docs/setup), Assessments (/docs/assessments), Glossary (/docs/reference/glossary)
+- [X] T012 [P] [US1] Create ModuleCard component in src/components/ModuleCard.tsx with props interface (moduleNumber, title, weekRange, learningOutcomes, estimatedHours, link, color)
+- [X] T013 [P] [US1] Create QuickLinksPanel component in src/components/QuickLinksPanel.tsx with props interface (links array with label, url, icon)
+- [X] T014 [P] [US1] Create custom homepage in src/pages/index.tsx with dashboard layout (hero section + 4 module cards in 2x2 grid + quick links sidebar)
+- [X] T015 [P] [US1] Create module index files: docs/module-1-ros2/index.md, docs/module-2-digital-twin/index.md, docs/module-3-isaac/index.md, docs/module-4-vla/index.md with frontmatter (title, description, sidebar_position)
+- [X] T016 [P] [US1] Create week-based subdirectories under each module: module-1-ros2/week-3-basics/, week-4-communication/, week-5-integration/ (similarly for modules 2-4)
+- [X] T017 [US1] Update sidebars.ts to add nested week categories under each module with collapsed: true for modules
+- [X] T018 [US1] Create docs/intro/index.md with course overview, structure diagram, and learning outcomes (frontmatter: week: 1, module: 0, estimated_time: 2)
+- [X] T019 [US1] Create placeholder chapter files with frontmatter for Week 3-5 in module-1-ros2/ (ros2-fundamentals.md, nodes-topics.md, services.md, actions.md, multi-node-systems.md)
+- [X] T020 [US1] Update homepage quick links to reference Hardware Setup (/docs/setup), Assessments (/docs/assessments), Glossary (/docs/reference/glossary)
 
 ---
 
