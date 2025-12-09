@@ -175,16 +175,16 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T021 [P] [US2] Create docs/setup/hardware-digital-twin.md with hardware requirements (RTX 3060+, Ubuntu 22.04, 32GB RAM), cost estimate, installation steps, verification commands
-- [ ] T022 [P] [US2] Create docs/setup/hardware-edge-kit.md with Jetson Orin Nano specifications, setup steps, limitations, cost estimate
-- [ ] T023 [P] [US2] Create docs/setup/hardware-cloud.md with AWS/Azure setup instructions, cost estimates, cloud-specific limitations
-- [ ] T024 [P] [US2] Create docs/setup/software-ros2.md with ROS 2 Humble installation steps for Ubuntu 22.04, environment setup, verification (`ros2 --version`)
-- [ ] T025 [P] [US2] Create docs/setup/software-isaac-sim.md with Isaac Sim installation for workstation and cloud, GPU driver requirements, Omniverse setup
-- [ ] T026 [US2] Create docs/setup/index.md with hardware comparison table (3 options × features/cost/limitations) and decision tree
-- [ ] T027 [US2] Create GlossarySearch component in src/components/GlossarySearch.tsx using Fuse.js (fuzzy matching threshold: 0.3, search keys: term, definition)
-- [ ] T028 [US2] Create static/data/glossary.json with initial 100+ robotics terms (term, aliases, definition, relatedChapters, externalLinks)
-- [ ] T029 [US2] Create docs/reference/glossary.md embedding GlossarySearch component and rendering all terms alphabetically
-- [ ] T030 [US2] Add glossary search widget to navbar or sidebar in docusaurus.config.ts theme configuration
+- [X] T021 [P] [US2] Create docs/setup/hardware-digital-twin.md with hardware requirements (RTX 3060+, Ubuntu 22.04, 32GB RAM), cost estimate, installation steps, verification commands
+- [X] T022 [P] [US2] Create docs/setup/hardware-edge-kit.md with Jetson Orin Nano specifications, setup steps, limitations, cost estimate
+- [X] T023 [P] [US2] Create docs/setup/hardware-cloud.md with AWS/Azure setup instructions, cost estimates, cloud-specific limitations
+- [X] T024 [P] [US2] Create docs/setup/software-ros2.md with ROS 2 Humble installation steps for Ubuntu 22.04, environment setup, verification (`ros2 --version`)
+- [X] T025 [P] [US2] Create docs/setup/software-isaac-sim.md with Isaac Sim installation for workstation and cloud, GPU driver requirements, Omniverse setup
+- [X] T026 [US2] Create docs/setup/index.md with hardware comparison table (3 options × features/cost/limitations) and decision tree
+- [X] T027 [US2] Create GlossarySearch component in src/components/GlossarySearch.tsx using Fuse.js (fuzzy matching threshold: 0.3, search keys: term, definition)
+- [X] T028 [US2] Create static/data/glossary.json with initial 100+ robotics terms (term, aliases, definition, relatedChapters, externalLinks)
+- [X] T029 [US2] Create docs/reference/glossary.md embedding GlossarySearch component and rendering all terms alphabetically
+- [X] T030 [US2] Add glossary search widget to navbar or sidebar in docusaurus.config.ts theme configuration
 
 ---
 
@@ -202,14 +202,14 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T031 [P] [US3] Update docs/module-1-ros2/index.md with complete learning outcomes (3-5 outcomes), week range (3-5), estimated hours (30), capstone integration (communication layer)
-- [ ] T032 [P] [US3] Update docs/module-2-digital-twin/index.md with learning outcomes, week range (6-7), estimated hours (20), capstone integration (simulation testing)
-- [ ] T033 [P] [US3] Update docs/module-3-isaac/index.md with learning outcomes, week range (8-10), estimated hours (30), capstone integration (perception pipeline)
-- [ ] T034 [P] [US3] Update docs/module-4-vla/index.md with learning outcomes, week range (11-13), estimated hours (30), capstone integration (VLA decision making)
-- [ ] T035 [US3] Create docs/capstone/index.md with 5-component architecture diagram (voice → plan → navigate → perceive → manipulate) and integration overview
-- [ ] T036 [P] [US3] Create static/img/course-structure/course-timeline.svg showing 13-week progression with module boundaries and capstone milestones
-- [ ] T037 [P] [US3] Create static/img/course-structure/capstone-architecture.svg showing 5-component system with data flow arrows
-- [ ] T038 [US3] Add estimated_time totals to each module index page and validate sum is 130-156 hours (SC-006 compliance)
+- [X] T031 [P] [US3] Update docs/module-1-ros2/index.md with complete learning outcomes (3-5 outcomes), week range (3-5), estimated hours (30), capstone integration (communication layer)
+- [X] T032 [P] [US3] Update docs/module-2-digital-twin/index.md with learning outcomes, week range (6-7), estimated hours (20), capstone integration (simulation testing)
+- [X] T033 [P] [US3] Update docs/module-3-isaac/index.md with learning outcomes, week range (8-10), estimated hours (30), capstone integration (perception pipeline)
+- [X] T034 [P] [US3] Update docs/module-4-vla/index.md with learning outcomes, week range (11-13), estimated hours (30), capstone integration (VLA decision making)
+- [X] T035 [US3] Create docs/capstone/index.md with 5-component architecture diagram (voice → plan → navigate → perceive → manipulate) and integration overview
+- [X] T036 [P] [US3] Create static/img/course-structure/course-timeline.svg showing 13-week progression with module boundaries and capstone milestones
+- [X] T037 [P] [US3] Create static/img/course-structure/capstone-architecture.svg showing 5-component system with data flow arrows
+- [X] T038 [US3] Add estimated_time totals to each module index page and validate sum is 130-156 hours (SC-006 compliance)
 
 ---
 
@@ -227,16 +227,16 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T039 [P] [US4] Create docs/assessments/ros2-package-project.md with requirements (2+ nodes, topic communication, unit tests), rubric (3 criteria × 3 levels), submission guidelines
-- [ ] T040 [P] [US4] Create docs/assessments/gazebo-simulation-project.md with robot model requirements, simulation scenarios, rubric, submission guidelines
-- [ ] T041 [P] [US4] Create docs/assessments/isaac-perception-project.md with perception pipeline requirements (camera, lidar, object detection), rubric, submission guidelines
-- [ ] T042 [US4] Create docs/assessments/capstone-project.md with complete 5-component architecture requirements, integration checklist, evaluation rubric (6+ criteria)
-- [ ] T043 [US4] Create docs/assessments/index.md with assessment timeline (Week 5: ROS 2, Week 7: Gazebo, Week 10: Isaac, Week 13: Capstone) and overview
-- [ ] T044 [P] [US4] Create docs/capstone/voice-interface.md detailing voice component requirements (speech recognition, NLU, command parsing)
-- [ ] T045 [P] [US4] Create docs/capstone/task-planning.md detailing planning component (task decomposition, PDDL/BT, goal management)
-- [ ] T046 [P] [US4] Create docs/capstone/navigation.md detailing navigation component (SLAM, path planning, obstacle avoidance)
-- [ ] T047 [P] [US4] Create docs/capstone/perception.md detailing perception component (camera, lidar, object detection, pose estimation)
-- [ ] T048 [P] [US4] Create docs/capstone/manipulation.md detailing manipulation component (inverse kinematics, grasp planning, force control)
+- [X] T039 [P] [US4] Create docs/assessments/ros2-package-project.md with requirements (2+ nodes, topic communication, unit tests), rubric (3 criteria × 3 levels), submission guidelines
+- [X] T040 [P] [US4] Create docs/assessments/gazebo-simulation-project.md with robot model requirements, simulation scenarios, rubric, submission guidelines
+- [X] T041 [P] [US4] Create docs/assessments/isaac-perception-project.md with perception pipeline requirements (camera, lidar, object detection), rubric, submission guidelines
+- [X] T042 [US4] Create docs/assessments/capstone-project.md with complete 5-component architecture requirements, integration checklist, evaluation rubric (6+ criteria)
+- [X] T043 [US4] Create docs/assessments/index.md with assessment timeline (Week 5: ROS 2, Week 7: Gazebo, Week 10: Isaac, Week 13: Capstone) and overview
+- [X] T044 [P] [US4] Create docs/capstone/voice-interface.md detailing voice component requirements (speech recognition, NLU, command parsing)
+- [X] T045 [P] [US4] Create docs/capstone/task-planning.md detailing planning component (task decomposition, PDDL/BT, goal management)
+- [X] T046 [P] [US4] Create docs/capstone/navigation.md detailing navigation component (SLAM, path planning, obstacle avoidance)
+- [X] T047 [P] [US4] Create docs/capstone/perception.md detailing perception component (camera, lidar, object detection, pose estimation)
+- [X] T048 [P] [US4] Create docs/capstone/manipulation.md detailing manipulation component (inverse kinematics, grasp planning, force control)
 
 ---
 
@@ -248,17 +248,17 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Independent Test Criteria:**
 - [ ] ROS 2 command cheat sheet is complete and searchable
-- [ ] Troubleshooting guide covers 10+ common errors with solutions
+- [X] Troubleshooting guide covers 10+ common errors with solutions
 - [ ] Notation guide explains all mathematical symbols used
 - [ ] External resources are categorized and linked
 
 **Tasks:**
 
-- [ ] T049 [P] [US5] Create docs/reference/ros2-quick-reference.md with command cheat sheet (ros2 run, ros2 topic, ros2 service, ros2 bag, colcon build) with examples
-- [ ] T050 [P] [US5] Create docs/reference/troubleshooting.md with 10+ common errors (ROS 2 setup, Gazebo crashes, Isaac Sim GPU errors, network issues) and solutions with related chapter links
-- [ ] T051 [P] [US5] Create docs/reference/notation.md with mathematical notation guide (vectors, matrices, transformations, quaternions, homogeneous coordinates)
-- [ ] T052 [P] [US5] Create docs/reference/external-resources.md with categorized links (official docs, research papers, community forums, hardware vendors)
-- [ ] T053 [US5] Create docs/reference/index.md with reference material overview and search guidance
+- [X] T049 [P] [US5] Create docs/reference/ros2-quick-reference.md with command cheat sheet (ros2 run, ros2 topic, ros2 service, ros2 bag, colcon build) with examples
+- [X] T050 [P] [US5] Create docs/reference/troubleshooting.md with 10+ common errors (ROS 2 setup, Gazebo crashes, Isaac Sim GPU errors, network issues) and solutions with related chapter links
+- [X] T051 [P] [US5] Create docs/reference/notation.md with mathematical notation guide (vectors, matrices, transformations, quaternions, homogeneous coordinates)
+- [X] T052 [P] [US5] Create docs/reference/external-resources.md with categorized links (official docs, research papers, community forums, hardware vendors)
+- [X] T053 [US5] Create docs/reference/index.md with reference material overview and search guidance
 
 ---
 
@@ -274,28 +274,28 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T054 [P] Create PrerequisiteGraph component in src/components/PrerequisiteGraph.tsx using React Flow and dagre for auto-layout
-- [ ] T055 [P] Create chapter template in .specify/templates/chapter-template.md with frontmatter example (all required and optional fields)
-- [ ] T056 [P] Create validation plugin in plugins/validate-metadata/index.js to check frontmatter schema (week 1-13, module 1-4, prerequisites exist, estimated_time > 0)
-- [ ] T057 Create docs/instructors/index.md with customization guide (how to reorder chapters, adapt for semester vs. quarter)
-- [ ] T058 [P] Create docs/instructors/customization.md with prerequisite dependency graph and safe reordering guidelines
-- [ ] T059 [P] Create docs/instructors/lab-exercises.md with suggested lab activities per module
-- [ ] T060 Configure Algolia DocSearch in docusaurus.config.ts (apiKey placeholder, indexName, appId) with custom metadata indexing (week, module, topic)
-- [ ] T061 [P] Create .github/workflows/deploy.yml with build → test:links → lint → spell-check → deploy to GitHub Pages
-- [ ] T062 [P] Install and configure link checker: `npm install --save-dev docusaurus-plugin-broken-links-detector` and add to plugins array
-- [ ] T063 [P] Install and configure spell checker: `npm install --save-dev cspell` and create cspell.json with robotics dictionary
-- [ ] T064 [P] Create README.md in project root with project overview, development setup, build commands, contribution guidelines
-- [ ] T065 [P] Create docs/deployment.md with Algolia setup instructions, GitHub Pages configuration, custom domain setup (optional)
-- [ ] T066 [P] Create docs/components.md documenting custom component APIs (ModuleCard, QuickLinksPanel, GlossarySearch, PrerequisiteGraph)
-- [ ] T067 [P] Create docs/authoring-guide.md with instructions for writing chapters, using templates, frontmatter schema, code examples
-- [ ] T068 Run Lighthouse audit on built site and optimize images in static/img/ to <200KB each using imagemin or svgo
-- [ ] T069 Test mobile responsiveness on viewport widths: 375px, 768px, 1024px, 1440px and fix layout issues
-- [ ] T070 Test dark mode rendering for all custom components and fix any contrast/visibility issues
-- [ ] T071 Run accessibility audit (WCAG AA compliance) and fix any violations (alt text, color contrast, keyboard navigation)
-- [ ] T072 Validate that total estimated_time across all chapters sums to 130-156 hours (SC-006) using validation plugin
-- [ ] T073 Verify all 10 success criteria from spec.md (SC-001 through SC-010) are met and document evidence
-- [ ] T074 Create static/img/course-structure/prerequisite-dependency-graph.svg showing all chapter prerequisite relationships
-- [ ] T075 Deploy to GitHub Pages staging environment and perform end-to-end testing (navigation, search, mobile, dark mode)
+- [X] T054 [P] Create PrerequisiteGraph component in src/components/PrerequisiteGraph.tsx using React Flow and dagre for auto-layout
+- [X] T055 [P] Create chapter template in .specify/templates/chapter-template.md with frontmatter example (all required and optional fields)
+- [X] T056 [P] Create validation plugin in plugins/validate-metadata/index.js to check frontmatter schema (week 1-13, module 1-4, prerequisites exist, estimated_time > 0)
+- [X] T057 Create docs/instructors/index.md with customization guide (how to reorder chapters, adapt for semester vs. quarter)
+- [X] T058 [P] Create docs/instructors/customization.md with prerequisite dependency graph and safe reordering guidelines
+- [X] T059 [P] Create docs/instructors/lab-exercises.md with suggested lab activities per module
+- [X] T060 Configure Algolia DocSearch in docusaurus.config.ts (apiKey placeholder, indexName, appId) with custom metadata indexing (week, module, topic)
+- [X] T061 [P] Create .github/workflows/deploy.yml with build → test:links → lint → spell-check → deploy to GitHub Pages
+- [X] T062 [P] Install and configure link checker: `npm install --save-dev docusaurus-plugin-broken-links-detector` and add to plugins array
+- [X] T063 [P] Install and configure spell checker: `npm install --save-dev cspell` and create cspell.json with robotics dictionary
+- [X] T064 [P] Create README.md in project root with project overview, development setup, build commands, contribution guidelines
+- [X] T065 [P] Create docs/deployment.md with Algolia setup instructions, GitHub Pages configuration, custom domain setup (optional)
+- [X] T066 [P] Create docs/components.md documenting custom component APIs (ModuleCard, QuickLinksPanel, GlossarySearch, PrerequisiteGraph)
+- [X] T067 [P] Create docs/authoring-guide.md with instructions for writing chapters, using templates, frontmatter schema, code examples
+- [X] T068 Run Lighthouse audit on built site and optimize images in static/img/ to <200KB each using imagemin or svgo
+- [X] T069 Test mobile responsiveness on viewport widths: 375px, 768px, 1024px, 1440px and fix layout issues
+- [X] T070 Test dark mode rendering for all custom components and fix any contrast/visibility issues
+- [X] T071 Run accessibility audit (WCAG AA compliance) and fix any violations (alt text, color contrast, keyboard navigation)
+- [X] T072 Validate that total estimated_time across all chapters sums to 130-156 hours (SC-006) using validation plugin
+- [X] T073 Verify all 10 success criteria from spec.md (SC-001 through SC-010) are met and document evidence
+- [X] T074 Create static/img/course-structure/prerequisite-dependency-graph.svg showing all chapter prerequisite relationships
+- [X] T075 Deploy to GitHub Pages staging environment and perform end-to-end testing (navigation, search, mobile, dark mode)
 
 ---
 
