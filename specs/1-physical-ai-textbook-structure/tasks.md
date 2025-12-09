@@ -105,10 +105,10 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T001 Initialize Docusaurus v3 project using `npx create-docusaurus@latest physical-ai-textbook classic --typescript` in project root
-- [ ] T002 Install additional dependencies: `npm install fuse.js reactflow dagre @docusaurus/plugin-ideal-image`
-- [ ] T003 [P] Configure docusaurus.config.ts with site metadata (title: "Physical AI Textbook", tagline, url, baseUrl, GitHub repo)
-- [ ] T004 [P] Create .gitignore file including node_modules/, .docusaurus/, build/, .env
+- [X] T001 Initialize Docusaurus v3 project using `npx create-docusaurus@latest physical-ai-textbook classic --typescript` in project root
+- [X] T002 Install additional dependencies: `npm install fuse.js reactflow dagre @docusaurus/plugin-ideal-image`
+- [X] T003 [P] Configure docusaurus.config.ts with site metadata (title: "Physical AI Textbook", tagline, url, baseUrl, GitHub repo)
+- [X] T004 [P] Create .gitignore file including node_modules/, .docusaurus/, build/, .env
 - [ ] T005 [P] Initialize Git repository with initial commit of scaffolded structure
 
 ---
