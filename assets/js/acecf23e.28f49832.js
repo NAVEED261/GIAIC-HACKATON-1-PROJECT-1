@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkphysical_ai_textbook=globalThis.webpackChunkphysical_ai_textbook||[]).push([[1903],{1912:a=>{a.exports=JSON.parse('{"blogBasePath":"/GIAIC-HACKATON-1-PROJECT-1/blog","blogTitle":"Blog","authorsListPath":"/GIAIC-HACKATON-1-PROJECT-1/blog/authors"}')}}]);
