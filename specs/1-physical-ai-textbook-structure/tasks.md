@@ -109,7 +109,7 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 - [X] T002 Install additional dependencies: `npm install fuse.js reactflow dagre @docusaurus/plugin-ideal-image`
 - [X] T003 [P] Configure docusaurus.config.ts with site metadata (title: "Physical AI Textbook", tagline, url, baseUrl, GitHub repo)
 - [X] T004 [P] Create .gitignore file including node_modules/, .docusaurus/, build/, .env
-- [ ] T005 [P] Initialize Git repository with initial commit of scaffolded structure
+- [X] T005 [P] Initialize Git repository with initial commit of scaffolded structure
 
 ---
 
@@ -125,12 +125,12 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 
 **Tasks:**
 
-- [ ] T006 Create docs/ directory structure with subdirectories: intro/, setup/, module-1-ros2/, module-2-digital-twin/, module-3-isaac/, module-4-vla/, capstone/, assessments/, reference/, instructors/
-- [ ] T007 Create static/ directory structure with subdirectories: data/, img/course-structure/, img/modules/
-- [ ] T008 Create src/components/ directory for custom React components
-- [ ] T009 Create src/css/custom.css with CSS variables for module colors (Module 1: #3578e5, Module 2: #8e44ad, Module 3: #e67e22, Module 4: #27ae60)
-- [ ] T010 [P] Configure sidebars.ts with nested category structure per plan.md (Introduction, Setup, Modules 1-4, Capstone, Assessments, Reference, Instructors)
-- [ ] T011 [P] Create static/data/modules.json file with 4 module metadata entries (id, title, moduleNumber, weekRange, estimatedHours, learningOutcomes, capstoneIntegration, color)
+- [X] T006 Create docs/ directory structure with subdirectories: intro/, setup/, module-1-ros2/, module-2-digital-twin/, module-3-isaac/, module-4-vla/, capstone/, assessments/, reference/, instructors/
+- [X] T007 Create static/ directory structure with subdirectories: data/, img/course-structure/, img/modules/
+- [X] T008 Create src/components/ directory for custom React components
+- [X] T009 Create src/css/custom.css with CSS variables for module colors (Module 1: #3578e5, Module 2: #8e44ad, Module 3: #e67e22, Module 4: #27ae60)
+- [X] T010 [P] Configure sidebars.ts with nested category structure per plan.md (Introduction, Setup, Modules 1-4, Capstone, Assessments, Reference, Instructors)
+- [X] T011 [P] Create static/data/modules.json file with 4 module metadata entries (id, title, moduleNumber, weekRange, estimatedHours, learningOutcomes, capstoneIntegration, color)
 
 ---
 

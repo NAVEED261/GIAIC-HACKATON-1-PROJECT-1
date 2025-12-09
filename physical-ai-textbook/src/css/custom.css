@@ -15,6 +15,12 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Module Colors for Physical AI Textbook */
+  --module-1-color: #3578e5; /* Blue - ROS 2 */
+  --module-2-color: #8e44ad; /* Purple - Digital Twin */
+  --module-3-color: #e67e22; /* Orange - NVIDIA Isaac */
+  --module-4-color: #27ae60; /* Green - VLA & Humanoids */
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
