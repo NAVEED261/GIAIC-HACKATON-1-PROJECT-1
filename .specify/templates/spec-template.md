@@ -1,115 +1,171 @@
-# Feature Specification: [FEATURE NAME]
+---
+feature: {{FEATURE_NAME}}
+version: {{VERSION}}
+status: {{STATUS}}
+created: {{DATE_ISO}}
+updated: {{DATE_ISO}}
+author: {{AUTHOR}}
+---
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
-**Input**: User description: "$ARGUMENTS"
+# Feature Specification: {{FEATURE_NAME}}
 
-## User Scenarios & Testing *(mandatory)*
+## Overview
 
-<!--
-  IMPORTANT: User stories should be PRIORITIZED as user journeys ordered by importance.
-  Each user story/journey must be INDEPENDENTLY TESTABLE - meaning if you implement just ONE of them,
-  you should still have a viable MVP (Minimum Viable Product) that delivers value.
-  
-  Assign priorities (P1, P2, P3, etc.) to each story, where P1 is the most critical.
-  Think of each story as a standalone slice of functionality that can be:
-  - Developed independently
-  - Tested independently
-  - Deployed independently
-  - Demonstrated to users independently
--->
+{{OVERVIEW}}
 
-### User Story 1 - [Brief Title] (Priority: P1)
+Brief description of what this feature does and why it's needed.
 
-[Describe this user journey in plain language]
+## Target Audience
 
-**Why this priority**: [Explain the value and why it has this priority level]
+{{TARGET_AUDIENCE}}
 
-**Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
+Who is this chapter/feature for? (e.g., beginners, intermediate learners, advanced practitioners)
 
-**Acceptance Scenarios**:
+## Learning Objectives
 
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-2. **Given** [initial state], **When** [action], **Then** [expected outcome]
+By the end of this chapter/section, readers will be able to:
+
+1. {{OBJECTIVE_1}}
+2. {{OBJECTIVE_2}}
+3. {{OBJECTIVE_3}}
+4. {{OBJECTIVE_4}}
+
+## Prerequisites
+
+**Required Knowledge:**
+- {{PREREQUISITE_1}}
+- {{PREREQUISITE_2}}
+
+**Prior Chapters:**
+- {{PRIOR_CHAPTER_1}}
+- {{PRIOR_CHAPTER_2}}
+
+**External Resources:**
+- {{EXTERNAL_RESOURCE_1}}
+
+## Scope
+
+### In Scope
+
+- {{IN_SCOPE_1}}
+- {{IN_SCOPE_2}}
+- {{IN_SCOPE_3}}
+
+### Out of Scope
+
+- {{OUT_OF_SCOPE_1}}
+- {{OUT_OF_SCOPE_2}}
+
+## Key Concepts
+
+### Concept 1: {{CONCEPT_1_NAME}}
+
+{{CONCEPT_1_DESCRIPTION}}
+
+### Concept 2: {{CONCEPT_2_NAME}}
+
+{{CONCEPT_2_DESCRIPTION}}
+
+### Concept 3: {{CONCEPT_3_NAME}}
+
+{{CONCEPT_3_DESCRIPTION}}
+
+## Content Structure
+
+### 1. Introduction
+- {{INTRO_SECTION_1}}
+- {{INTRO_SECTION_2}}
+
+### 2. Core Concepts
+- {{CORE_CONCEPT_1}}
+- {{CORE_CONCEPT_2}}
+- {{CORE_CONCEPT_3}}
+
+### 3. Practical Examples
+- {{EXAMPLE_1}}
+- {{EXAMPLE_2}}
+
+### 4. Hands-on Tutorial
+- {{TUTORIAL_STEP_1}}
+- {{TUTORIAL_STEP_2}}
+
+### 5. Advanced Topics (optional)
+- {{ADVANCED_TOPIC_1}}
+
+### 6. Summary & Review
+- Key takeaways
+- Practice exercises
+
+## Code Examples Needed
+
+1. **{{EXAMPLE_1_NAME}}**
+   - Purpose: {{EXAMPLE_1_PURPOSE}}
+   - Language: {{EXAMPLE_1_LANGUAGE}}
+   - Complexity: {{EXAMPLE_1_COMPLEXITY}}
+
+2. **{{EXAMPLE_2_NAME}}**
+   - Purpose: {{EXAMPLE_2_PURPOSE}}
+   - Language: {{EXAMPLE_2_LANGUAGE}}
+   - Complexity: {{EXAMPLE_2_COMPLEXITY}}
+
+## Diagrams & Visual Aids
+
+1. **{{DIAGRAM_1_NAME}}**
+   - Type: {{DIAGRAM_1_TYPE}} (e.g., flowchart, architecture diagram, screenshot)
+   - Purpose: {{DIAGRAM_1_PURPOSE}}
+
+2. **{{DIAGRAM_2_NAME}}**
+   - Type: {{DIAGRAM_2_TYPE}}
+   - Purpose: {{DIAGRAM_2_PURPOSE}}
+
+## Exercises
+
+### Exercise 1: {{EXERCISE_1_NAME}}
+- **Type:** Conceptual / Hands-on / Project-based
+- **Difficulty:** Beginner / Intermediate / Advanced
+- **Description:** {{EXERCISE_1_DESCRIPTION}}
+
+### Exercise 2: {{EXERCISE_2_NAME}}
+- **Type:** Conceptual / Hands-on / Project-based
+- **Difficulty:** Beginner / Intermediate / Advanced
+- **Description:** {{EXERCISE_2_DESCRIPTION}}
+
+### Exercise 3: {{EXERCISE_3_NAME}}
+- **Type:** Conceptual / Hands-on / Project-based
+- **Difficulty:** Beginner / Intermediate / Advanced
+- **Description:** {{EXERCISE_3_DESCRIPTION}}
+
+## References & Citations
+
+1. {{REFERENCE_1}}
+2. {{REFERENCE_2}}
+3. {{REFERENCE_3}}
+
+## Success Criteria
+
+This feature/chapter is complete when:
+
+- [ ] All learning objectives are addressed
+- [ ] Code examples are tested and functional
+- [ ] Diagrams are created and optimized
+- [ ] Exercises are validated
+- [ ] Content reviewed for accuracy
+- [ ] Metadata and frontmatter complete
+- [ ] Links verified
+- [ ] Accessibility requirements met
+
+## Open Questions
+
+1. {{QUESTION_1}}
+2. {{QUESTION_2}}
+
+## Related Features/Chapters
+
+- {{RELATED_FEATURE_1}}
+- {{RELATED_FEATURE_2}}
 
 ---
 
-### User Story 2 - [Brief Title] (Priority: P2)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-### User Story 3 - [Brief Title] (Priority: P3)
-
-[Describe this user journey in plain language]
-
-**Why this priority**: [Explain the value and why it has this priority level]
-
-**Independent Test**: [Describe how this can be tested independently]
-
-**Acceptance Scenarios**:
-
-1. **Given** [initial state], **When** [action], **Then** [expected outcome]
-
----
-
-[Add more user stories as needed, each with an assigned priority]
-
-### Edge Cases
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
--->
-
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
-
-## Requirements *(mandatory)*
-
-<!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
--->
-
-### Functional Requirements
-
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
-
-*Example of marking unclear requirements:*
-
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
-
-### Key Entities *(include if feature involves data)*
-
-- **[Entity 1]**: [What it represents, key attributes without implementation]
-- **[Entity 2]**: [What it represents, relationships to other entities]
-
-## Success Criteria *(mandatory)*
-
-<!--
-  ACTION REQUIRED: Define measurable success criteria.
-  These must be technology-agnostic and measurable.
--->
-
-### Measurable Outcomes
-
-- **SC-001**: [Measurable metric, e.g., "Users can complete account creation in under 2 minutes"]
-- **SC-002**: [Measurable metric, e.g., "System handles 1000 concurrent users without degradation"]
-- **SC-003**: [User satisfaction metric, e.g., "90% of users successfully complete primary task on first attempt"]
-- **SC-004**: [Business metric, e.g., "Reduce support tickets related to [X] by 50%"]
+**Status:** {{STATUS}}
+**Version:** {{VERSION}}
+**Last Updated:** {{DATE_ISO}}

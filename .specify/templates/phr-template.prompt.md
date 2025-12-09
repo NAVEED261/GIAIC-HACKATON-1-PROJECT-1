@@ -1,6 +1,6 @@
 ---
 id: {{ID}}
-title: {{TITLE}}
+title: "{{TITLE}}"
 stage: {{STAGE}}
 date: {{DATE_ISO}}
 surface: {{SURFACE}}
@@ -9,37 +9,62 @@ feature: {{FEATURE}}
 branch: {{BRANCH}}
 user: {{USER}}
 command: {{COMMAND}}
-labels: [{{LABELS}}]
+labels: {{LABELS}}
 links:
-  spec: {{LINKS_SPEC}}
-  ticket: {{LINKS_TICKET}}
-  adr: {{LINKS_ADR}}
-  pr: {{LINKS_PR}}
+  spec: {{SPEC_LINK}}
+  ticket: {{TICKET_LINK}}
+  adr: {{ADR_LINK}}
+  pr: {{PR_LINK}}
 files:
 {{FILES_YAML}}
 tests:
 {{TESTS_YAML}}
 ---
 
+# {{TITLE}}
+
+## Context
+
+**Stage:** {{STAGE}}
+**Feature:** {{FEATURE}}
+**Date:** {{DATE_ISO}}
+**User:** {{USER}}
+**Model:** {{MODEL}}
+**Command:** {{COMMAND}}
+
 ## Prompt
 
+```
 {{PROMPT_TEXT}}
+```
 
-## Response snapshot
+## Response Summary
 
 {{RESPONSE_TEXT}}
 
+## Files Modified/Created
+
+{{FILES_YAML}}
+
+## Tests Run/Added
+
+{{TESTS_YAML}}
+
 ## Outcome
 
-- ✅ Impact: {{OUTCOME_IMPACT}}
-- 🧪 Tests: {{TESTS_SUMMARY}}
-- 📁 Files: {{FILES_SUMMARY}}
-- 🔁 Next prompts: {{NEXT_PROMPTS}}
-- 🧠 Reflection: {{REFLECTION_NOTE}}
+{{OUTCOME}}
 
-## Evaluation notes (flywheel)
+## Links
 
-- Failure modes observed: {{FAILURE_MODES}}
-- Graders run and results (PASS/FAIL): {{GRADER_RESULTS}}
-- Prompt variant (if applicable): {{PROMPT_VARIANT_ID}}
-- Next experiment (smallest change to try): {{NEXT_EXPERIMENT}}
+- **Spec:** {{SPEC_LINK}}
+- **Ticket:** {{TICKET_LINK}}
+- **ADR:** {{ADR_LINK}}
+- **PR:** {{PR_LINK}}
+
+## Labels
+
+{{LABELS}}
+
+---
+
+*Generated with SpecKit Plus | PHR ID: {{ID}}*
