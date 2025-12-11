@@ -1,0 +1,426 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Physical AI Chatbot API",
+    "description": "RAG-powered chatbot for Physical AI Textbook",
+    "version": "1.0.0",
+    "contact": {
+      "name": "API Support",
+      "url": "https://github.com/NAVEED261/GIAIC-HACKATON-1-PROJECT-1"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://your-backend.railway.app/api/v1",
+      "description": "Production server"
+    },
+    {
+      "url": "http://localhost:8000/api/v1",
+      "description": "Development server"
+    }
+  ],
+  "paths": {
+    "/chat": {
+      "post": {
+        "summary": "Ask a question",
+        "description": "Submit a question and receive an AI-generated answer with source citations",
+        "operationId": "askQuestion",
+        "tags": ["Chat"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatRequest"
+              },
+              "examples": {
+                "simple_question": {
+                  "summary": "Simple question",
+                  "value": {
+                    "query": "What is ROS 2?",
+                    "session_id": "session-1702300800-abc123"
+                  }
+                },
+                "with_context": {
+                  "summary": "Question with selected text",
+                  "value": {
+                    "query": "What does this mean?",
+                    "session_id": "session-1702300800-abc123",
+                    "selected_text": "ROS 2 uses DDS for inter-process communication..."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatResponse"
+                },
+                "example": {
+                  "answer": "ROS 2 is an open-source framework for robot software development...",
+                  "sources": [
+                    {
+                      "chapter": "ROS 2 Fundamentals",
+                      "module": 1,
+                      "week": 3,
+                      "score": 0.92
+                    }
+                  ],
+                  "session_id": "session-1702300800-abc123",
+                  "confidence": 0.92
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/history/{session_id}": {
+      "get": {
+        "summary": "Get chat history",
+        "description": "Retrieve chat history for a given session",
+        "operationId": "getChatHistory",
+        "tags": ["History"],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "description": "Client-generated session ID"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            },
+            "description": "Maximum number of messages to return"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Session not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health check",
+        "description": "Check service health and dependencies",
+        "operationId": "healthCheck",
+        "tags": ["Health"],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                },
+                "example": {
+                  "status": "healthy",
+                  "timestamp": "2025-12-11T10:30:00Z",
+                  "services": {
+                    "database": "connected",
+                    "qdrant": "connected",
+                    "openai": "available"
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service is degraded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ChatRequest": {
+        "type": "object",
+        "required": ["query", "session_id"],
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500,
+            "description": "User's question",
+            "example": "What is ROS 2?"
+          },
+          "session_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "description": "Client-generated session ID",
+            "example": "session-1702300800-abc123"
+          },
+          "selected_text": {
+            "type": "string",
+            "maxLength": 2000,
+            "nullable": true,
+            "description": "Selected text from textbook (optional context)",
+            "example": "ROS 2 uses DDS for inter-process communication..."
+          }
+        }
+      },
+      "Source": {
+        "type": "object",
+        "required": ["chapter", "module", "week", "score"],
+        "properties": {
+          "chapter": {
+            "type": "string",
+            "description": "Chapter title",
+            "example": "ROS 2 Fundamentals"
+          },
+          "module": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 4,
+            "description": "Module number",
+            "example": 1
+          },
+          "week": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 13,
+            "description": "Week number",
+            "example": 3
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Similarity score (cosine similarity)",
+            "example": 0.92
+          }
+        }
+      },
+      "ChatResponse": {
+        "type": "object",
+        "required": ["answer", "sources", "session_id", "confidence"],
+        "properties": {
+          "answer": {
+            "type": "string",
+            "description": "LLM-generated answer",
+            "example": "ROS 2 is an open-source framework for robot software development..."
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "description": "Retrieved chunks with metadata",
+            "minItems": 0,
+            "maxItems": 5
+          },
+          "session_id": {
+            "type": "string",
+            "description": "Session ID echoed from request",
+            "example": "session-1702300800-abc123"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0,
+            "description": "Average similarity score of retrieved chunks",
+            "example": 0.92
+          }
+        }
+      },
+      "MessageHistory": {
+        "type": "object",
+        "required": ["role", "content", "timestamp"],
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": ["user", "assistant"],
+            "description": "Message sender"
+          },
+          "content": {
+            "type": "string",
+            "description": "Message content"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "nullable": true,
+            "description": "Sources (assistant messages only)"
+          },
+          "confidence": {
+            "type": "number",
+            "nullable": true,
+            "description": "Confidence score (assistant messages only)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Message creation timestamp",
+            "example": "2025-12-11T10:30:00Z"
+          }
+        }
+      },
+      "HistoryResponse": {
+        "type": "object",
+        "required": ["session_id", "messages"],
+        "properties": {
+          "session_id": {
+            "type": "string",
+            "description": "Session ID",
+            "example": "session-1702300800-abc123"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MessageHistory"
+            },
+            "description": "List of messages in chronological order"
+          }
+        }
+      },
+      "ServiceStatus": {
+        "type": "object",
+        "required": ["database", "qdrant", "openai"],
+        "properties": {
+          "database": {
+            "type": "string",
+            "enum": ["connected", "disconnected"],
+            "description": "Database connection status"
+          },
+          "qdrant": {
+            "type": "string",
+            "enum": ["connected", "disconnected"],
+            "description": "Qdrant vector database status"
+          },
+          "openai": {
+            "type": "string",
+            "enum": ["available", "unavailable"],
+            "description": "OpenAI API availability"
+          }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "required": ["status", "timestamp", "services"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["healthy", "degraded"],
+            "description": "Overall service health"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Health check timestamp"
+          },
+          "services": {
+            "$ref": "#/components/schemas/ServiceStatus"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error", "status_code", "path", "timestamp"],
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Human-readable error message",
+            "example": "Rate limit exceeded. Please try again in 30 minutes."
+          },
+          "status_code": {
+            "type": "integer",
+            "description": "HTTP status code",
+            "example": 429
+          },
+          "path": {
+            "type": "string",
+            "description": "Request path",
+            "example": "/api/v1/chat"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Error timestamp",
+            "example": "2025-12-11T10:30:00Z"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Chat",
+      "description": "Chat operations"
+    },
+    {
+      "name": "History",
+      "description": "Chat history retrieval"
+    },
+    {
+      "name": "Health",
+      "description": "Service health monitoring"
+    }
+  ]
+}
