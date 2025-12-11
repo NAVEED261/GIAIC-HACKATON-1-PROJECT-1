@@ -6,15 +6,45 @@ This is the main entry point for the Physical AI Textbook chatbot API.
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-import logging
+from contextlib import asynccontextmanager
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='{"time": "%(asctime)s", "level": "%(levelname)s", "message": "%(message)s"}'
-)
-logger = logging.getLogger(__name__)
+from app.core.logging import setup_logging, get_logger
+from app.core.config import settings
+from app.db.session import engine, close_db
+from app.middleware.rate_limit import RateLimitMiddleware
+from app.api.routes import chat, history
+
+# Setup logging
+setup_logging()
+logger = get_logger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Application lifespan manager for startup and shutdown events.
+
+    Startup:
+    - Initialize database connection
+    - Log application start
+
+    Shutdown:
+    - Close database connections
+    - Log application shutdown
+    """
+    # Startup
+    logger.info("Starting Physical AI Chatbot API...")
+    logger.info(f"OpenAI Model: {settings.OPENAI_CHAT_MODEL}")
+    logger.info(f"Qdrant Collection: {settings.QDRANT_COLLECTION_NAME}")
+    logger.info(f"Rate Limit: {settings.RATE_LIMIT_REQUESTS} req/{settings.RATE_LIMIT_WINDOW}s")
+
+    yield
+
+    # Shutdown
+    logger.info("Shutting down Physical AI Chatbot API...")
+    await close_db()
+    logger.info("Application shutdown complete")
+
 
 # Create FastAPI app
 app = FastAPI(
@@ -22,23 +52,26 @@ app = FastAPI(
     description="RAG-powered chatbot for Physical AI Textbook",
     version="1.0.0",
     docs_url="/api/docs",
-    redoc_url="/api/redoc"
+    redoc_url="/api/redoc",
+    lifespan=lifespan
 )
 
 # CORS middleware
-ALLOWED_ORIGINS = [
-    "https://naveed261.github.io",
-    "http://localhost:3000",
-    "http://localhost:8000"
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
+
+# Rate limiting middleware
+app.add_middleware(RateLimitMiddleware)
+
+# Include API routers
+app.include_router(chat.router)
+app.include_router(history.router)
+
 
 @app.get("/")
 async def root():
@@ -46,8 +79,14 @@ async def root():
     return {
         "message": "Physical AI Chatbot API",
         "version": "1.0.0",
-        "docs": "/api/docs"
+        "docs": "/api/docs",
+        "endpoints": {
+            "chat": "/api/v1/chat",
+            "history": "/api/v1/history/{session_id}",
+            "health": "/api/v1/health"
+        }
     }
+
 
 @app.get("/api/v1/health")
 async def health_check():
@@ -57,6 +96,7 @@ async def health_check():
         "service": "chatbot-backend",
         "version": "1.0.0"
     }
+
 
 if __name__ == "__main__":
     import uvicorn
