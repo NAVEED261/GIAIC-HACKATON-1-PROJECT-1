@@ -98,10 +98,10 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 **Goal:** Scaffold Docusaurus project and establish foundational configuration
 
 **Acceptance Criteria:**
-- [ ] Docusaurus project builds successfully (`npm run build`)
-- [ ] Development server runs (`npm start`)
-- [ ] Git repository is initialized with proper .gitignore
-- [ ] Package.json has all required dependencies
+- [X] Docusaurus project builds successfully (`npm run build`)
+- [X] Development server runs (`npm start`)
+- [X] Git repository is initialized with proper .gitignore
+- [X] Package.json has all required dependencies
 
 **Tasks:**
 
@@ -118,10 +118,10 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 **Goal:** Create shared infrastructure needed by all user stories
 
 **Acceptance Criteria:**
-- [ ] Directory structure matches plan.md specification
-- [ ] Sidebar configuration supports nested categories
-- [ ] Metadata schema is documented and validated
-- [ ] Build pipeline passes all quality gates
+- [X] Directory structure matches plan.md specification
+- [X] Sidebar configuration supports nested categories
+- [X] Metadata schema is documented and validated
+- [X] Build pipeline passes all quality gates
 
 **Tasks:**
 
@@ -141,11 +141,11 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 **User Story:** As an industry practitioner learning Physical AI, I need to see the complete 13-week course structure organized by modules and weeks, so that I can plan my learning journey and understand prerequisite relationships between topics.
 
 **Independent Test Criteria:**
-- [ ] Homepage displays 4 module cards with correct week ranges
-- [ ] Sidebar shows all 13 weeks organized by modules
-- [ ] Each module category is collapsible
-- [ ] Quick links sidebar is visible and functional
-- [ ] Navigation requires maximum 2 clicks from homepage to any week
+- [X] Homepage displays 4 module cards with correct week ranges
+- [X] Sidebar shows all 13 weeks organized by modules
+- [X] Each module category is collapsible
+- [X] Quick links sidebar is visible and functional
+- [X] Navigation requires maximum 2 clicks from homepage to any week
 
 **Tasks:**
 
@@ -168,10 +168,10 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 **User Story:** As an industry practitioner, I need immediate access to hardware setup guides, environment configuration, and glossary references before starting course content, so that I can prepare my development environment and understand terminology.
 
 **Independent Test Criteria:**
-- [ ] All 3 hardware setup guides are accessible and complete
-- [ ] Glossary search component provides instant lookup (<2s response)
-- [ ] Software installation guides include version specifications
-- [ ] Hardware comparison table is present
+- [X] All 3 hardware setup guides are accessible and complete
+- [X] Glossary search component provides instant lookup (<2s response)
+- [X] Software installation guides include version specifications
+- [X] Hardware comparison table is present
 
 **Tasks:**
 
@@ -195,10 +195,10 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 **User Story:** As an industry practitioner, I need to progress through each module (ROS 2 → Digital Twin → Isaac → VLA) sequentially with clear module objectives and capstone integration points, so that I understand how each module builds toward the final autonomous humanoid project.
 
 **Independent Test Criteria:**
-- [ ] Each module index states learning outcomes
-- [ ] Capstone integration points are documented per module
-- [ ] Module progression is clear (Week 3-5 → Week 6-7 → Week 8-10 → Week 11-13)
-- [ ] Students can estimate time commitment per module
+- [X] Each module index states learning outcomes
+- [X] Capstone integration points are documented per module
+- [X] Module progression is clear (Week 3-5 → Week 6-7 → Week 8-10 → Week 11-13)
+- [X] Students can estimate time commitment per module
 
 **Tasks:**
 
@@ -267,7 +267,7 @@ T021, T022, T023  # Workstation, Edge Kit, Cloud setup
 **Goal:** Complete documentation, validation, deployment, and quality assurance
 
 **Acceptance Criteria:**
-- [ ] All quality gates pass (build, links, spell check, accessibility)
+- [X] All quality gates pass (build, links, spell check, accessibility)
 - [ ] Lighthouse scores ≥ 90 (performance, accessibility, SEO)
 - [ ] Documentation is complete (deployment guide, authoring guide, component API)
 - [ ] GitHub Actions workflow deploys successfully
