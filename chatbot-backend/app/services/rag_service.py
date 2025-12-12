@@ -72,20 +72,29 @@ class RAGService:
         try:
             logger.info(f"Processing query for session {session_id}: '{query[:100]}...'")
 
-            # Step 1: Generate embedding for query
-            query_embedding = await self.embedding_service.embed_query(query)
+            # Step 1: Try to generate embedding and search for query
+            search_results = []
+            try:
+                query_embedding = await self.embedding_service.embed_query(query)
 
-            # Step 2: Search for relevant chunks
-            search_results = await self.qdrant_service.search(
-                query_vector=query_embedding,
-                limit=settings.MAX_CONTEXT_CHUNKS,
-                score_threshold=settings.MIN_CONFIDENCE_THRESHOLD
-            )
+                # Step 2: Search for relevant chunks
+                search_results = await self.qdrant_service.search(
+                    query_vector=query_embedding,
+                    limit=settings.MAX_CONTEXT_CHUNKS,
+                    score_threshold=settings.MIN_CONFIDENCE_THRESHOLD
+                )
+            except Exception as search_error:
+                logger.warning(f"Vector search failed (fallback mode): {search_error}")
+                # Continue with empty search results (fallback mode)
 
             logger.info(f"Found {len(search_results)} relevant chunks")
 
-            # Step 3: Get chat history for context
-            chat_history = await self._get_chat_history(session_id, db)
+            # Step 3: Get chat history for context (with fallback)
+            chat_history = []
+            try:
+                chat_history = await self._get_chat_history(session_id, db)
+            except Exception as db_error:
+                logger.warning(f"Failed to retrieve chat history: {db_error}")
 
             # Step 4: Generate answer using context
             answer_data = await self.chat_service.generate_answer(
@@ -94,22 +103,33 @@ class RAGService:
                 chat_history=chat_history
             )
 
+            # Add fallback notice if no context was found
+            if not search_results:
+                answer_data["answer"] = (
+                    f"{answer_data['answer']}\n\n"
+                    "ℹ️ Note: I'm currently responding without access to specific course documents. "
+                    "My responses are based on general AI knowledge about robotics and Physical AI."
+                )
+
             # Step 5: Calculate confidence (max similarity score)
-            confidence = max([chunk["score"] for chunk in search_results]) if search_results else 0.0
+            confidence = max([chunk["score"] for chunk in search_results]) if search_results else 0.5
 
             # Step 6: Format sources
             sources = self._format_sources(search_results)
 
-            # Step 7: Store conversation in database
-            await self._store_conversation(
-                session_id=session_id,
-                query=query,
-                answer=answer_data["answer"],
-                sources=sources,
-                confidence=confidence,
-                tokens_used=answer_data["tokens_used"],
-                db=db
-            )
+            # Step 7: Store conversation in database (with fallback)
+            try:
+                await self._store_conversation(
+                    session_id=session_id,
+                    query=query,
+                    answer=answer_data["answer"],
+                    sources=sources,
+                    confidence=confidence,
+                    tokens_used=answer_data["tokens_used"],
+                    db=db
+                )
+            except Exception as store_error:
+                logger.warning(f"Failed to store conversation: {store_error}")
 
             logger.info(
                 f"Generated answer (confidence: {confidence:.2f}, "
