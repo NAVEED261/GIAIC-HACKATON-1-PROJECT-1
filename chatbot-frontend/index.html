@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physical AI Chatbot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <!-- Header -->
+            <div class="chat-header">
+                <h1>🤖 Physical AI Assistant</h1>
+                <p>Ask me anything about ROS 2, Robotics, and Physical AI</p>
+            </div>
+
+            <!-- Messages Area -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>👋 Hi! I'm your Physical AI assistant. Ask me questions about ROS 2, robotics, digital twins, or NVIDIA Isaac Sim!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-container">
+                <input
+                    type="text"
+                    id="userInput"
+                    class="chat-input"
+                    placeholder="Type your question here..."
+                    autocomplete="off"
+                >
+                <button id="sendButton" class="send-button">
+                    <span id="sendIcon">Send</span>
+                    <span id="loadingIcon" class="hidden">⏳</span>
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="chat-footer">
+                <small>Powered by OpenAI GPT-4o-mini | RAG with Qdrant Vector Search</small>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
