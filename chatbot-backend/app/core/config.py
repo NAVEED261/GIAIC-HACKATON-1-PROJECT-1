@@ -17,22 +17,22 @@ class Settings(BaseSettings):
     VERSION: str = "1.0.0"
 
     # OpenAI Configuration
-    OPENAI_API_KEY: str
+    OPENAI_API_KEY: str = "test-key-for-local-development"
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
     OPENAI_CHAT_MODEL: str = "gpt-4o-mini"
     OPENAI_TEMPERATURE: float = 0.3
     OPENAI_MAX_TOKENS: int = 1000
 
     # Qdrant Configuration
-    QDRANT_URL: str
-    QDRANT_API_KEY: str
+    QDRANT_URL: str = "http://localhost:6333"
+    QDRANT_API_KEY: str = "test-key-for-local-development"
     QDRANT_COLLECTION_NAME: str = "textbook_chunks"
     QDRANT_VECTOR_SIZE: int = 1536  # text-embedding-3-small dimension
     QDRANT_SEARCH_LIMIT: int = 5
     QDRANT_SCORE_THRESHOLD: float = 0.7
 
     # Database Configuration
-    DATABASE_URL: str
+    DATABASE_URL: str = "sqlite+aiosqlite:///./chatbot.db"
     DATABASE_POOL_SIZE: int = 10
     DATABASE_MAX_OVERFLOW: int = 20
 
