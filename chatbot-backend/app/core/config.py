@@ -5,6 +5,7 @@ Environment variables are loaded from .env file or system environment.
 """
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import field_validator
 from typing import Optional
 
 
@@ -63,6 +64,25 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         case_sensitive=True
     )
+
+    @field_validator('DATABASE_URL')
+    @classmethod
+    def validate_database_url(cls, v: str) -> str:
+        """
+        Validate and normalize DATABASE_URL for async PostgreSQL.
+
+        Converts postgresql:// to postgresql+asyncpg:// for async support.
+        Removes channel_binding parameter (not supported by asyncpg).
+        """
+        if v.startswith("postgresql://"):
+            # Convert to asyncpg driver
+            v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
+
+        # Remove channel_binding parameter (asyncpg doesn't support it)
+        if "channel_binding=require" in v:
+            v = v.replace("&channel_binding=require", "").replace("?channel_binding=require&", "?").replace("?channel_binding=require", "")
+
+        return v
 
 
 # Create global settings instance
