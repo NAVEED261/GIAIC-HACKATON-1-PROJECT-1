@@ -53,7 +53,7 @@ class Settings(BaseSettings):
     CHUNK_SIZE: int = 800  # tokens
     CHUNK_OVERLAP: int = 100  # tokens
     MAX_CONTEXT_CHUNKS: int = 5
-    MIN_CONFIDENCE_THRESHOLD: float = 0.7
+    MIN_CONFIDENCE_THRESHOLD: float = 0.3  # Lowered for better recall
 
     # Logging Configuration
     LOG_LEVEL: str = "INFO"
