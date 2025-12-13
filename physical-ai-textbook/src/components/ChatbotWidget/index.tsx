@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 
 const API_BASE_URL = 'https://giaic-hackaton-1-project-1.onrender.com/api/v1';
@@ -15,23 +15,6 @@ interface Message {
   confidence?: number;
 }
 
-// Memoized message component for performance
-const ChatMessage = React.memo(({ message }: { message: Message }) => (
-  <div className={`${styles.message} ${styles[message.role]}`}>
-    <p>{message.content}</p>
-    {message.sources && message.sources.length > 0 && (
-      <div className={styles.sources}>
-        <small>📚 Sources: {message.sources.map(s => s.chapter).join(', ')}</small>
-      </div>
-    )}
-    {message.confidence && (
-      <div className={styles.confidence}>
-        <small>⭐ Confidence: {(message.confidence * 100).toFixed(0)}%</small>
-      </div>
-    )}
-  </div>
-));
-
 export default function ChatbotWidget(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
@@ -45,41 +28,31 @@ export default function ChatbotWidget(): JSX.Element {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const sessionId = useRef(`session-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`);
 
-  // Memoized messages list - prevents unnecessary re-renders
-  const memoizedMessages = useMemo(() => messages, [messages]);
-
-  const scrollToBottom = useCallback(() => {
+  const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
+  };
 
   useEffect(() => {
     scrollToBottom();
-  }, [memoizedMessages, scrollToBottom]);
+  }, [messages]);
 
-  const sendMessage = useCallback(async () => {
+  const sendMessage = async () => {
     if (!input.trim() || isLoading) return;
 
-    const userQuery = input;
-    const userMessage: Message = { role: 'user', content: userQuery };
+    const userMessage: Message = { role: 'user', content: input };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
 
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s timeout
-
       const response = await fetch(`${API_BASE_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          query: userQuery,
+          query: input,
           session_id: sessionId.current
-        }),
-        signal: controller.signal
+        })
       });
-
-      clearTimeout(timeoutId);
 
       if (!response.ok) throw new Error(`API Error: ${response.status}`);
 
@@ -97,87 +70,85 @@ export default function ChatbotWidget(): JSX.Element {
       console.error('Chat error:', error);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: '⚠️ Error: Could not get response. Please try again.'
+        content: '⚠️ Sorry, I encountered an error. Please try again.'
       }]);
     } finally {
       setIsLoading(false);
     }
-  }, [input, isLoading]);
+  };
 
-  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
     }
-  }, [sendMessage]);
+  };
 
   return (
     <>
-      {/* Floating Button - Fast */}
+      {/* Floating Button */}
       <button
         className={styles.floatingButton}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle chatbot"
-        title="Chat with AI Assistant"
       >
         {isOpen ? '✕' : '🤖'}
       </button>
 
-      {/* Chat Widget - Optimized */}
+      {/* Chat Widget */}
       {isOpen && (
         <div className={styles.chatWidget}>
-          {/* Header */}
-          <div className={styles.header}>
-            <h3>Physical AI Assistant</h3>
-            <button
-              className={styles.closeBtn}
-              onClick={() => setIsOpen(false)}
-              aria-label="Close"
-            >
-              ✕
-            </button>
+          <div className={styles.chatHeader}>
+            <h3>💬 Physical AI Assistant</h3>
+            <button onClick={() => setIsOpen(false)} className={styles.closeButton}>✕</button>
           </div>
 
-          {/* Messages Container - Memoized */}
-          <div className={styles.messagesContainer}>
-            {memoizedMessages.map((msg, idx) => (
-              <ChatMessage key={idx} message={msg} />
+          <div className={styles.chatMessages}>
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`${styles.message} ${styles[msg.role]}`}>
+                <div className={styles.messageContent}>
+                  <p>{msg.content}</p>
+                  {msg.sources && msg.sources.length > 0 && (
+                    <div className={styles.sources}>
+                      <strong>📚 Sources:</strong>
+                      {msg.sources.map((source, i) => (
+                        <span key={i} className={styles.source}>
+                          {source.chapter} (Week {source.week})
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {msg.confidence !== undefined && (
+                    <small className={styles.confidence}>
+                      Confidence: {(msg.confidence * 100).toFixed(0)}%
+                    </small>
+                  )}
+                </div>
+              </div>
             ))}
             {isLoading && (
-              <div className={styles.loadingIndicator}>
-                <span>⏳ Thinking...</span>
+              <div className={`${styles.message} ${styles.assistant}`}>
+                <div className={styles.typing}>
+                  <span></span><span></span><span></span>
+                </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input Container */}
-          <div className={styles.inputContainer}>
+          <div className={styles.chatInput}>
             <input
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask about ROS 2, Digital Twins, Isaac Sim..."
+              placeholder="Ask a question..."
               disabled={isLoading}
-              className={styles.input}
             />
-            <button
-              onClick={sendMessage}
-              disabled={isLoading || !input.trim()}
-              className={styles.sendButton}
-              aria-label="Send message"
-            >
-              {isLoading ? '⏳' : '➤'}
+            <button onClick={sendMessage} disabled={isLoading || !input.trim()}>
+              Send
             </button>
           </div>
-
-          {/* Status */}
-          {isLoading && (
-            <div className={styles.status}>
-              <small>Getting answer...</small>
-            </div>
-          )}
         </div>
       )}
     </>
