@@ -1,12 +1,16 @@
 """
-Application configuration using Pydantic settings - OPTIMIZED FOR SPEED
+Application configuration using Pydantic settings.
+
+Environment variables are loaded from .env file or system environment.
 """
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import field_validator
+from typing import Optional
+
 
 class Settings(BaseSettings):
-    """Application settings - PERFORMANCE OPTIMIZED"""
+    """Application settings loaded from environment variables."""
 
     # API Configuration
     API_V1_PREFIX: str = "/api/v1"
@@ -18,15 +22,15 @@ class Settings(BaseSettings):
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
     OPENAI_CHAT_MODEL: str = "gpt-4o-mini"
     OPENAI_TEMPERATURE: float = 0.3
-    OPENAI_MAX_TOKENS: int = 500  # Reduced from 1000 for faster responses
+    OPENAI_MAX_TOKENS: int = 1000
 
-    # Qdrant Configuration - SPEED OPTIMIZED
+    # Qdrant Configuration
     QDRANT_URL: str = "http://localhost:6333"
     QDRANT_API_KEY: str = "test-key-for-local-development"
     QDRANT_COLLECTION_NAME: str = "textbook_chunks"
-    QDRANT_VECTOR_SIZE: int = 1536
-    QDRANT_SEARCH_LIMIT: int = 3  # Speed: Top 3 results only
-    QDRANT_SCORE_THRESHOLD: float = 0.2  # Speed: Lower threshold
+    QDRANT_VECTOR_SIZE: int = 1536  # text-embedding-3-small dimension
+    QDRANT_SEARCH_LIMIT: int = 5
+    QDRANT_SCORE_THRESHOLD: float = 0.7
 
     # Database Configuration
     DATABASE_URL: str = "sqlite+aiosqlite:///./chatbot.db"
@@ -41,23 +45,19 @@ class Settings(BaseSettings):
         "http://localhost:8000"
     ]
 
-    # Rate Limiting
-    RATE_LIMIT_REQUESTS: int = 100
-    RATE_LIMIT_WINDOW: int = 3600
+    # Rate Limiting Configuration
+    RATE_LIMIT_REQUESTS: int = 100  # requests per hour
+    RATE_LIMIT_WINDOW: int = 3600  # 1 hour in seconds
 
-    # RAG Configuration - SPEED OPTIMIZED
-    CHUNK_SIZE: int = 800
-    CHUNK_OVERLAP: int = 100
-    MAX_CONTEXT_CHUNKS: int = 3  # Speed: 3 chunks only
-    MIN_CONFIDENCE_THRESHOLD: float = 0.2
+    # RAG Configuration
+    CHUNK_SIZE: int = 800  # tokens
+    CHUNK_OVERLAP: int = 100  # tokens
+    MAX_CONTEXT_CHUNKS: int = 5
+    MIN_CONFIDENCE_THRESHOLD: float = 0.3  # Lowered for better recall
 
-    # Caching Configuration - NEW
-    ENABLE_RESPONSE_CACHE: bool = True
-    CACHE_TTL: int = 3600  # 1 hour
-
-    # Logging
+    # Logging Configuration
     LOG_LEVEL: str = "INFO"
-    LOG_FORMAT: str = "json"
+    LOG_FORMAT: str = "json"  # json or text
 
     model_config = SettingsConfigDict(
         env_file=".env",
@@ -68,10 +68,22 @@ class Settings(BaseSettings):
     @field_validator('DATABASE_URL')
     @classmethod
     def validate_database_url(cls, v: str) -> str:
+        """
+        Validate and normalize DATABASE_URL for async PostgreSQL.
+
+        Converts postgresql:// to postgresql+asyncpg:// for async support.
+        Removes channel_binding parameter (not supported by asyncpg).
+        """
         if v.startswith("postgresql://"):
+            # Convert to asyncpg driver
             v = v.replace("postgresql://", "postgresql+asyncpg://", 1)
+
+        # Remove channel_binding parameter (asyncpg doesn't support it)
         if "channel_binding=require" in v:
             v = v.replace("&channel_binding=require", "").replace("?channel_binding=require&", "?").replace("?channel_binding=require", "")
+
         return v
 
+
+# Create global settings instance
 settings = Settings()
