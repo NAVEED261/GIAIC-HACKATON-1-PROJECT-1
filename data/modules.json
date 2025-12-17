@@ -1,0 +1,63 @@
+[
+  {
+    "id": "module-1-ros2",
+    "title": "Module 1: ROS 2 Fundamentals",
+    "moduleNumber": 1,
+    "weekRange": "Weeks 3-5",
+    "estimatedHours": 30,
+    "learningOutcomes": [
+      "Understand ROS 2 architecture and core concepts",
+      "Create and manage ROS 2 nodes, topics, services, and actions",
+      "Build multi-node robotic systems with proper communication patterns",
+      "Implement publish-subscribe and request-response communication"
+    ],
+    "capstoneIntegration": "Provides the communication layer and middleware foundation for the autonomous humanoid system",
+    "color": "#3578e5"
+  },
+  {
+    "id": "module-2-digital-twin",
+    "title": "Module 2: Digital Twin Simulation",
+    "moduleNumber": 2,
+    "weekRange": "Weeks 6-7",
+    "estimatedHours": 20,
+    "learningOutcomes": [
+      "Set up and configure Gazebo simulation environments",
+      "Create and import robot models (URDF/SDF)",
+      "Integrate Unity ML-Agents for reinforcement learning",
+      "Test robotic systems in simulated environments before physical deployment"
+    ],
+    "capstoneIntegration": "Enables safe testing and validation of navigation and manipulation behaviors in simulation",
+    "color": "#8e44ad"
+  },
+  {
+    "id": "module-3-isaac",
+    "title": "Module 3: NVIDIA Isaac Sim",
+    "moduleNumber": 3,
+    "weekRange": "Weeks 8-10",
+    "estimatedHours": 30,
+    "learningOutcomes": [
+      "Deploy NVIDIA Isaac Sim for high-fidelity robot simulation",
+      "Implement perception pipelines using camera and lidar sensors",
+      "Develop object detection and pose estimation systems",
+      "Integrate Isaac Sim with ROS 2 for seamless workflow"
+    ],
+    "capstoneIntegration": "Provides the perception pipeline for environment sensing and object recognition in the humanoid system",
+    "color": "#e67e22"
+  },
+  {
+    "id": "module-4-vla",
+    "title": "Module 4: Vision-Language-Action Models",
+    "moduleNumber": 4,
+    "weekRange": "Weeks 11-13",
+    "estimatedHours": 30,
+    "learningOutcomes": [
+      "Understand VLA model architecture and applications in robotics",
+      "Integrate VLAs for natural language task understanding",
+      "Implement humanoid robot control with VLA decision-making",
+      "Deploy end-to-end autonomous humanoid systems",
+      "Complete capstone project integrating all modules"
+    ],
+    "capstoneIntegration": "Provides high-level decision-making and task planning for the autonomous humanoid based on natural language commands",
+    "color": "#27ae60"
+  }
+]
