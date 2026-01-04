@@ -12,7 +12,7 @@ from app.core.logging import setup_logging, get_logger
 from app.core.config import settings
 from app.db.session import engine, close_db
 from app.middleware.rate_limit import RateLimitMiddleware
-from app.api.routes import chat, history
+from app.api.routes import chat, history, auth
 
 # Setup logging
 setup_logging()
@@ -69,6 +69,7 @@ app.add_middleware(
 app.add_middleware(RateLimitMiddleware)
 
 # Include API routers
+app.include_router(auth.router)
 app.include_router(chat.router)
 app.include_router(history.router)
 

@@ -1,13 +1,13 @@
 """
-SQLAlchemy database models for chat sessions and messages.
+SQLAlchemy database models for chat sessions, messages, and users.
 
 Models:
+- User: User authentication and profile
 - ChatSession: Represents a user chat session
 - ChatMessage: Represents individual messages in a conversation
 """
 
-from sqlalchemy import Column, String, Text, Float, Integer, DateTime, ForeignKey, CheckConstraint, TIMESTAMP
-from sqlalchemy.dialects.postgresql import UUID, JSONB
+from sqlalchemy import Column, String, Text, Float, Integer, DateTime, ForeignKey, CheckConstraint, TIMESTAMP, Boolean, JSON
 from sqlalchemy.orm import relationship, DeclarativeBase
 from sqlalchemy.sql import func
 import uuid
@@ -20,13 +20,48 @@ class Base(DeclarativeBase):
     pass
 
 
+class User(Base):
+    """User model for authentication."""
+
+    __tablename__ = "users"
+
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    username = Column(String(255), unique=True, nullable=False, index=True)
+    email = Column(String(255), unique=True, nullable=False, index=True)
+    password_hash = Column(String(255), nullable=False)
+    created_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        nullable=False
+    )
+    updated_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False
+    )
+    is_active = Column(Boolean, default=True, nullable=False)
+
+    # Relationship to chat sessions
+    chat_sessions = relationship(
+        "ChatSession",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        lazy="selectin"
+    )
+
+    def __repr__(self) -> str:
+        return f"<User(id={self.id}, username={self.username}, email={self.email})>"
+
+
 class ChatSession(Base):
     """Chat session model for tracking user conversations."""
 
     __tablename__ = "chat_sessions"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     session_id = Column(String(255), unique=True, nullable=False, index=True)
+    user_id = Column(String(36), ForeignKey("users.id", ondelete="CASCADE"), nullable=True, index=True)
     created_at = Column(
         DateTime(timezone=True),
         server_default=func.now(),
@@ -38,7 +73,10 @@ class ChatSession(Base):
         onupdate=func.now(),
         nullable=False
     )
-    metadata_ = Column("metadata", JSONB, default={}, nullable=False)
+    metadata_ = Column("metadata", JSON, default={}, nullable=False)
+
+    # Relationship to user
+    user = relationship("User", back_populates="chat_sessions")
 
     # Relationship to messages
     messages = relationship(
@@ -49,7 +87,7 @@ class ChatSession(Base):
     )
 
     def __repr__(self) -> str:
-        return f"<ChatSession(id={self.id}, session_id={self.session_id})>"
+        return f"<ChatSession(id={self.id}, session_id={self.session_id}, user_id={self.user_id})>"
 
 
 class ChatMessage(Base):
@@ -70,7 +108,7 @@ class ChatMessage(Base):
         nullable=False
     )
     content = Column(Text, nullable=False)
-    sources = Column(JSONB, default=[], nullable=False)
+    sources = Column(JSON, default=[], nullable=False)
     confidence = Column(
         Float,
         CheckConstraint("confidence >= 0.0 AND confidence <= 1.0"),

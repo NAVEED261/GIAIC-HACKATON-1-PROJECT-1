@@ -84,3 +84,78 @@ class HistoryRequest(BaseModel):
             ]
         }
     }
+
+
+class SignupRequest(BaseModel):
+    """Request model for POST /api/v1/auth/signup endpoint."""
+
+    username: str = Field(
+        ...,
+        min_length=3,
+        max_length=50,
+        description="Username (3-50 characters)",
+        examples=["john_doe"]
+    )
+
+    email: str = Field(
+        ...,
+        description="Email address",
+        examples=["john@example.com"]
+    )
+
+    password: str = Field(
+        ...,
+        min_length=6,
+        max_length=100,
+        description="Password (minimum 6 characters)",
+        examples=["SecurePassword123"]
+    )
+
+    @field_validator("username")
+    @classmethod
+    def username_valid(cls, v: str) -> str:
+        """Validate username."""
+        v = v.strip()
+        if not v.isalnum() and "_" not in v:
+            raise ValueError("Username must contain only alphanumeric characters and underscores")
+        return v
+
+    @field_validator("email")
+    @classmethod
+    def email_valid(cls, v: str) -> str:
+        """Validate email format."""
+        if "@" not in v or "." not in v:
+            raise ValueError("Invalid email address")
+        return v.strip()
+
+    @field_validator("password")
+    @classmethod
+    def password_valid(cls, v: str) -> str:
+        """Validate password strength."""
+        if len(v) < 6:
+            raise ValueError("Password must be at least 6 characters")
+        return v
+
+
+class LoginRequest(BaseModel):
+    """Request model for POST /api/v1/auth/login endpoint."""
+
+    username: str = Field(
+        ...,
+        description="Username or email",
+        examples=["john_doe"]
+    )
+
+    password: str = Field(
+        ...,
+        description="Password",
+        examples=["SecurePassword123"]
+    )
+
+    @field_validator("username", "password")
+    @classmethod
+    def fields_not_empty(cls, v: str) -> str:
+        """Validate fields are not empty."""
+        if not v.strip():
+            raise ValueError("Field cannot be empty")
+        return v.strip()

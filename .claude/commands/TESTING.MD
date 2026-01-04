@@ -7,9 +7,12 @@
 
   cd chatbot-backend
   python -m venv .venv
-  .venv\Scripts\activate
+  .venv\Scripts\activate/uv venv
   pip install -r requirements.txt
-  uvicorn app.main:app --reload
+  uvicorn app.main:app --reload   or direct ...   Dobara start kro: uvicorn app.main:app --host 127.0.0.1 --port 8000
+  3. Test kro: curl http://127.0.0.1:8000/api/v1/health
+  4. Browser: http://127.0.0.1:8000/api/docs
+  5. Frontend: npm start (separate terminal)
   ✅ Running on: http://127.0.0.1:8000
 
   ---
@@ -19,6 +22,9 @@
   npm install
   npm start
   ✅ Running on: http://localhost:3000
+  or 
+  Backend: http://127.0.0.1:8000/api/v1/health
+  ✅ Frontend: http://localhost:3000/GIAIC-HACKATON-1-PROJECT-1/
 
   ---
   📝 CHANGE .env (IMPORTANT):
