@@ -5,21 +5,19 @@ Provides async engine and session factory for database operations.
 """
 
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from sqlalchemy.pool import NullPool
+from sqlalchemy.pool import NullPool, StaticPool
 from typing import AsyncGenerator
 from ..core.config import settings
 from ..core.logging import get_logger
 
 logger = get_logger(__name__)
 
-# Create async engine
+# Create async engine - SQLite requires StaticPool for async
 engine = create_async_engine(
     settings.DATABASE_URL,
     echo=False,
-    pool_size=settings.DATABASE_POOL_SIZE,
-    max_overflow=settings.DATABASE_MAX_OVERFLOW,
-    pool_pre_ping=True,  # Verify connections before using
-    pool_recycle=3600,  # Recycle connections after 1 hour
+    poolclass=StaticPool,  # SQLite workaround for async
+    connect_args={"check_same_thread": False},  # SQLite async fix
 )
 
 # Create async session factory

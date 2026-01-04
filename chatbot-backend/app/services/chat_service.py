@@ -123,7 +123,7 @@ class ChatService:
 
     def _create_system_prompt(self, context: str) -> str:
         """
-        Create system prompt with context and instructions.
+        Create system prompt with context and instructions (OPTIMIZED FOR SPEED).
 
         Args:
             context: Retrieved context text
@@ -131,22 +131,12 @@ class ChatService:
         Returns:
             System prompt string
         """
-        return f"""You are an expert Physical AI teaching assistant with comprehensive knowledge of ROS 2, Digital Twins, NVIDIA Isaac Sim, Vision-Language-Action Models, Humanoid Robotics, Sensors, and Motion Planning.
+        return f"""You are a Physical AI teaching assistant. Answer questions directly using the textbook content below.
 
-**Your Task**: Answer the student's question using the provided course textbook content.
-
-**Guidelines**:
-1. Answer **directly and confidently** using the textbook context below
-2. Explain concepts clearly for students learning this material
-3. Use specific examples and code snippets from the context when available
-4. Stay focused on the question asked
-5. **Do not** apologize or say "I'm sorry" - provide helpful answers
-6. If context is limited, give the best answer you can based on what's available
-
-**Course Textbook Content:**
+Context:
 {context}
 
-Provide a clear, detailed answer to the student's question."""
+Be concise and clear."""
 
     async def close(self) -> None:
         """Close the OpenAI client connection."""

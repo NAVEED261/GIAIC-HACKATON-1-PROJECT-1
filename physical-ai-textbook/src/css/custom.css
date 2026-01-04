@@ -34,3 +34,31 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Auth Button Styling */
+.auth-link-signin {
+  color: #667eea !important;
+  border: 1px solid #667eea;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+.auth-link-signin:hover {
+  background-color: #667eea;
+  color: white !important;
+}
+
+.auth-link-signup {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white !important;
+  padding: 6px 14px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.auth-link-signup:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}

@@ -18,15 +18,15 @@ class Settings(BaseSettings):
     OPENAI_EMBEDDING_MODEL: str = "text-embedding-3-small"
     OPENAI_CHAT_MODEL: str = "gpt-4o-mini"
     OPENAI_TEMPERATURE: float = 0.3
-    OPENAI_MAX_TOKENS: int = 500  # Reduced from 1000 for faster responses
+    OPENAI_MAX_TOKENS: int = 200  # Ultra-fast: 200 tokens max (80% faster)
 
     # Qdrant Configuration - SPEED OPTIMIZED
     QDRANT_URL: str = "http://localhost:6333"
     QDRANT_API_KEY: str = "test-key-for-local-development"
     QDRANT_COLLECTION_NAME: str = "textbook_chunks"
     QDRANT_VECTOR_SIZE: int = 1536
-    QDRANT_SEARCH_LIMIT: int = 3  # Speed: Top 3 results only
-    QDRANT_SCORE_THRESHOLD: float = 0.2  # Speed: Lower threshold
+    QDRANT_SEARCH_LIMIT: int = 1  # Ultra-fast: Top 1 result only
+    QDRANT_SCORE_THRESHOLD: float = 0.15  # Ultra-fast: Very low threshold
 
     # Database Configuration
     DATABASE_URL: str = "sqlite+aiosqlite:///./chatbot.db"

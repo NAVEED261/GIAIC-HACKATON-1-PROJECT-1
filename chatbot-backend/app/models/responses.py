@@ -215,6 +215,67 @@ class HealthResponse(BaseModel):
     }
 
 
+class UserResponse(BaseModel):
+    """Response model for user data."""
+
+    id: str = Field(..., description="User ID")
+    username: str = Field(..., description="Username")
+    email: str = Field(..., description="Email address")
+    created_at: str = Field(..., description="Account creation timestamp")
+
+
+class SignupResponse(BaseModel):
+    """Response model for POST /api/v1/auth/signup endpoint."""
+
+    success: bool = Field(..., description="Whether signup was successful")
+    message: str = Field(..., description="Status message")
+    user: UserResponse = Field(..., description="User data")
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "success": True,
+                    "message": "User registered successfully",
+                    "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "username": "john_doe",
+                        "email": "john@example.com",
+                        "created_at": "2025-12-17T10:00:00"
+                    }
+                }
+            ]
+        }
+    }
+
+
+class LoginResponse(BaseModel):
+    """Response model for POST /api/v1/auth/login endpoint."""
+
+    success: bool = Field(..., description="Whether login was successful")
+    message: str = Field(..., description="Status message")
+    user: UserResponse = Field(..., description="User data")
+    session_id: str = Field(..., description="Session ID for chatbot")
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "success": True,
+                    "message": "Login successful",
+                    "user": {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "username": "john_doe",
+                        "email": "john@example.com",
+                        "created_at": "2025-12-17T10:00:00"
+                    },
+                    "session_id": "session-john-doe-12345"
+                }
+            ]
+        }
+    }
+
+
 class ErrorResponse(BaseModel):
     """Response model for error responses."""
 
